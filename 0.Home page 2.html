@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixel Cluster | Home</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="navbar.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ===== HERO — CINEMATIC FULL-SCREEN ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #06060b;
+}
+
+/* Animated gradient background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 10%, rgba(229,9,20,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0,212,255,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 10% 60%, rgba(139,92,246,0.06) 0%, transparent 50%);
+  animation: hero-glow 8s ease-in-out infinite alternate;
+}
+@keyframes hero-glow {
+  0% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Floating particles */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(229,9,20,0.4);
+  border-radius: 50%;
+  animation: float-up linear infinite;
+}
+.particle:nth-child(2) { left: 15%; width: 2px; height: 2px; animation-duration: 12s; animation-delay: 1s; background: rgba(0,212,255,0.3); }
+.particle:nth-child(3) { left: 30%; animation-duration: 15s; animation-delay: 3s; background: rgba(255,255,255,0.15); }
+.particle:nth-child(4) { left: 45%; width: 4px; height: 4px; animation-duration: 10s; animation-delay: 0.5s; }
+.particle:nth-child(5) { left: 60%; animation-duration: 14s; animation-delay: 2s; background: rgba(0,212,255,0.2); }
+.particle:nth-child(6) { left: 75%; width: 2px; height: 2px; animation-duration: 11s; animation-delay: 4s; background: rgba(255,255,255,0.1); }
+.particle:nth-child(7) { left: 88%; animation-duration: 13s; animation-delay: 1.5s; }
+.particle:nth-child(8) { left: 5%; width: 4px; height: 4px; animation-duration: 16s; animation-delay: 3.5s; background: rgba(139,92,246,0.25); }
+@keyframes float-up {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* Grid scan line */
+.hero-scanline {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.008) 2px,
+    rgba(255,255,255,0.008) 4px
+  );
+  pointer-events: none;
+}
+
+/* Accent lines */
+.hero-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-lines::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: -100%;
+  width: 200%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(229,9,20,0.3) 25%, rgba(229,9,20,0.6) 50%, rgba(229,9,20,0.3) 75%, transparent 100%);
+  animation: line-scan 6s ease-in-out infinite;
+}
+.hero-lines::after {
+  content: '';
+  position: absolute;
+  top: 70%;
+  left: -100%;
+  width: 200%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,212,255,0.2) 25%, rgba(0,212,255,0.4) 50%, rgba(0,212,255,0.2) 75%, transparent 100%);
+  animation: line-scan 8s ease-in-out infinite reverse;
+}
+@keyframes line-scan {
+  0% { transform: translateX(-30%); }
+  100% { transform: translateX(30%); }
+}
+
+/* Hero content */
+.hero-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  max-width: 860px;
+  padding: 0 28px;
+  animation: pc-fadeUp 1s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Live badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  backdrop-filter: blur(12px);
+  animation: pc-fadeUp 1s ease 0.2s both;
+}
+.hero-badge .dot {
+  width: 8px; height: 8px;
+  background: #00e68a;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0,230,138,0.6);
+  animation: pc-pulse 2s infinite;
+}
+
+/* Title */
+.hero-title {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 22px;
+  letter-spacing: -2px;
+  animation: pc-fadeUp 1s ease 0.3s both;
+}
+.hero-title .line1 {
+  display: block;
+  color: var(--text);
+  text-shadow: 0 0 60px rgba(255,255,255,0.05);
+}
+.hero-title .hl {
+  display: block;
+  background: linear-gradient(135deg, #e50914 0%, #ff6b6b 30%, #ff1a26 60%, #e50914 100%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: pc-shimmer 4s ease-in-out infinite;
+  text-shadow: none;
+  filter: drop-shadow(0 0 30px rgba(229,9,20,0.25));
+}
+
+/* Subtitle with typing cursor */
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin: 0 auto 40px;
+  font-weight: 400;
+  line-height: 1.75;
+  animation: pc-fadeUp 1s ease 0.5s both;
+}
+
+/* CTA buttons */
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: pc-fadeUp 1s ease 0.6s both;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  letter-spacing: 0.3px;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
+  animation: btn-shine 3s ease-in-out infinite;
+}
+@keyframes btn-shine {
+  0%, 100% { transform: translateX(-80%) rotate(25deg); }
+  50% { transform: translateX(80%) rotate(25deg); }
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 40px var(--accent-glow);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  letter-spacing: 0.3px;
+}
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+/* Hero stats bar */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+  animation: pc-fadeUp 1s ease 0.8s both;
+}
+.hero-stat {
+  text-align: center;
+  position: relative;
+}
+.hero-stat::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 30px;
+  background: var(--glass-border);
+}
+.hero-stat:last-child::after { display: none; }
+.hero-stat-num {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--accent);
+  display: block;
+  line-height: 1.2;
+}
+.hero-stat-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 2px;
+}
+
+/* Scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: hero-bounce 2.5s ease-in-out infinite;
+}
+.hero-scroll .scroll-line {
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scroll-line-pulse 2s ease-in-out infinite;
+}
+@keyframes scroll-line-pulse {
+  0%, 100% { opacity: 0.4; height: 30px; }
+  50% { opacity: 1; height: 40px; }
+}
+@keyframes hero-bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Corner accents */
+.hero-corner {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  z-index: 3;
+  pointer-events: none;
+}
+.hero-corner.tl { top: 80px; left: 40px; border-top: 1px solid rgba(229,9,20,0.2); border-left: 1px solid rgba(229,9,20,0.2); }
+.hero-corner.tr { top: 80px; right: 40px; border-top: 1px solid rgba(229,9,20,0.2); border-right: 1px solid rgba(229,9,20,0.2); }
+.hero-corner.bl { bottom: 80px; left: 40px; border-bottom: 1px solid rgba(0,212,255,0.15); border-left: 1px solid rgba(0,212,255,0.15); }
+.hero-corner.br { bottom: 80px; right: 40px; border-bottom: 1px solid rgba(0,212,255,0.15); border-right: 1px solid rgba(0,212,255,0.15); }
+
+/* ===== CATEGORIES ===== */
+.categories-section { position: relative; z-index: 1; padding: 90px 40px 50px; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+}
+.section-label .line { width: 36px; height: 2px; background: var(--accent); }
+.section-heading { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; margin-bottom: 44px; }
+.categories-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.category-card {
+  position: relative; aspect-ratio: 3/4; border-radius: 16px; overflow: hidden; cursor: pointer;
+  border: 1px solid var(--glass-border); transition: var(--transition);
+}
+.category-card:hover { border-color: rgba(229,9,20,0.3); box-shadow: 0 16px 48px rgba(0,0,0,0.5); transform: translateY(-6px); }
+.category-card .card-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1), filter 0.6s ease; filter: brightness(0.85);
+}
+.category-card:hover .card-bg { transform: scale(1.1); filter: brightness(0.55); }
+.category-card .card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 25%, rgba(6,6,11,0.95) 100%);
+}
+.category-card .card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 20px; transform: translateY(16px); transition: transform 0.4s ease; }
+.category-card:hover .card-content { transform: translateY(0); }
+.card-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--accent); display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: #fff; margin-bottom: 12px; box-shadow: 0 4px 15px var(--accent-glow);
+}
+.card-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+.card-desc { font-size: 0.82rem; color: var(--text-secondary); opacity: 0; transform: translateY(8px); transition: all 0.4s ease 0.1s; line-height: 1.5; }
+.category-card:hover .card-desc { opacity: 1; transform: translateY(0); }
+.card-arrow { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 0.82rem; font-weight: 600; color: var(--accent); opacity: 0; transition: all 0.3s ease 0.2s; }
+.category-card:hover .card-arrow { opacity: 1; }
+.card-glow { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transition: transform 0.4s ease; }
+.category-card:hover .card-glow { transform: scaleX(1); }
+
+/* ===== ABOUT ===== */
+.about-section { position: relative; z-index: 1; padding: 70px 40px; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; max-width: 1200px; margin: 0 auto; }
+.about-text h2 { font-size: 2rem; font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
+.about-text h2 span { color: var(--accent); }
+.about-text p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 14px; }
+.about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+.stat-item { text-align: center; padding: 18px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 14px; transition: var(--transition); }
+.stat-item:hover { border-color: rgba(229,9,20,0.2); transform: translateY(-3px); }
+.stat-number { font-size: 1.6rem; font-weight: 800; color: var(--accent); display: block; }
+.stat-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 3px; text-transform: uppercase; letter-spacing: 1px; }
+.about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.feature-card { padding: 24px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 14px; transition: var(--transition); }
+.feature-card:hover { background: var(--glass-hover); transform: translateY(-4px); border-color: rgba(229,9,20,0.2); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+.feature-icon { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), #ff6b6b); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #fff; margin-bottom: 12px; }
+.feature-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+.feature-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ===== OFFER ===== */
+.offer-section { position: relative; z-index: 1; padding: 70px 40px; }
+.offer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1200px; margin: 36px auto 0; }
+.offer-card {
+  padding: 28px 20px; background: var(--bg-secondary); border: 1px solid var(--glass-border);
+  border-radius: 18px; text-align: center; transition: var(--transition); position: relative; overflow: hidden;
+}
+.offer-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), #ff6b6b); transform: scaleX(0); transition: transform 0.4s ease; }
+.offer-card:hover::before { transform: scaleX(1); }
+.offer-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: rgba(229,9,20,0.15); }
+.offer-icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
+.offer-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.offer-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .categories-grid { grid-template-columns: repeat(3, 1fr); }
+  .about-grid { grid-template-columns: 1fr; }
+  .offer-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-corner { display: none; }
+}
+@media (max-width: 768px) {
+  .categories-section, .about-section, .offer-section { padding-left: 18px; padding-right: 18px; }
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-features { grid-template-columns: 1fr; }
+  .offer-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 24px; }
+  .hero-stat-num { font-size: 1.3rem; }
+  .hero-corner { display: none; }
+}
+@media (max-width: 480px) {
+  .categories-grid { grid-template-columns: 1fr; }
+  .hero-cta { flex-direction: column; align-items: center; }
+  .hero-stats { flex-wrap: wrap; gap: 20px; }
+  .hero-stat::after { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="pc-bg-glow"></div>
+<div class="pc-grid-bg"></div>
+
+<!-- NAVBAR -->
+<nav class="pc-nav">
+  <a href="0.Home page 2.html" class="pc-nav-brand">
+    <div class="pc-nav-logo">PC</div>
+    <span class="pc-nav-brand-text">PIXEL CLUSTER</span>
+  </a>
+  <div class="pc-nav-links">
+    <a href="0.Home page 2.html" class="active"><i class="fas fa-home"></i> Home</a>
+    <a href="1home.html"><i class="fas fa-film"></i> Movies</a>
+    <a href="Songs Home page.html"><i class="fas fa-music"></i> Songs</a>
+    <a href="1. Books Main.html"><i class="fas fa-book"></i> Library</a>
+    <a href="MusicClassesMain.html"><i class="fas fa-guitar"></i> Music Classes</a>
+    <a href="Index.html"><i class="fas fa-person-walking"></i> Dance</a>
+    <a href="help.html"><i class="fas fa-circle-question"></i> Help</a>
+  </div>
+  <div class="pc-nav-right">
+    <button class="pc-nav-toggle"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <!-- Animated background layers -->
+  <div class="hero-bg"></div>
+  <div class="hero-particles">
+    <div class="particle" style="left:8%"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+  <div class="hero-scanline"></div>
+  <div class="hero-lines"></div>
+
+  <!-- Corner accents -->
+  <div class="hero-corner tl"></div>
+  <div class="hero-corner tr"></div>
+  <div class="hero-corner bl"></div>
+  <div class="hero-corner br"></div>
+
+  <!-- Content -->
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Where Stories, Screens & Sounds Collide
+    </div>
+
+    <h1 class="hero-title">
+      <span class="line1">Welcome to</span>
+      <span class="hl">Pixel Cluster</span>
+    </h1>
+
+    <p class="hero-sub">
+      Your unified digital platform for books, movies, music, and creative learning experiences through a modern interface.
+    </p>
+
+    <div class="hero-cta">
+      <a href="1home.html" class="btn-primary">
+        <i class="fas fa-play"></i> Start Exploring
+      </a>
+      <a href="#categories" class="btn-ghost">
+        <i class="fas fa-compass"></i> Browse Categories
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num" id="counter-1">400K+</span>
+        <span class="hero-stat-label">Videos</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">50K+</span>
+        <span class="hero-stat-label">Books</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">100K+</span>
+        <span class="hero-stat-label">Songs</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">Free</span>
+        <span class="hero-stat-label">No Ads</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories-section" id="categories">
+  <div class="section-label"><span class="line"></span>EXPLORE</div>
+  <h2 class="section-heading">Discover Your World</h2>
+  <div class="categories-grid">
+    <a href="Songs Home page.html" class="category-card">
+      <div class="card-bg" id="songs-bg"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="card-icon"><i class="fas fa-music"></i></div>
+        <div class="card-title">Songs</div>
+        <div class="card-desc">Stream curated playlists and discover new tracks across every genre.</div>
+        <div class="card-arrow">Explore <i class="fas fa-arrow-right"></i></div>
+      </div>
+      <div class="card-glow"></div>
+    </a>
+    <a href="1home.html" class="category-card">
+      <div class="card-bg" id="movies-bg"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="card-icon"><i class="fas fa-film"></i></div>
+        <div class="card-title">Theatre</div>
+        <div class="card-desc">Watch the latest releases, classics, and hidden gems on demand.</div>
+        <div class="card-arrow">Explore <i class="fas fa-arrow-right"></i></div>
+      </div>
+      <div class="card-glow"></div>
+    </a>
+    <a href="1. Books Main.html" class="category-card">
+      <div class="card-bg" id="library-bg"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="card-icon"><i class="fas fa-book-open"></i></div>
+        <div class="card-title">Library</div>
+        <div class="card-desc">Browse, purchase, and read books in digital and physical formats.</div>
+        <div class="card-arrow">Explore <i class="fas fa-arrow-right"></i></div>
+      </div>
+      <div class="card-glow"></div>
+    </a>
+    <a href="MusicClassesMain.html" class="category-card">
+      <div class="card-bg" id="music-bg"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="card-icon"><i class="fas fa-guitar"></i></div>
+        <div class="card-title">Music Classes</div>
+        <div class="card-desc">Learn instruments and music theory from expert instructors.</div>
+        <div class="card-arrow">Explore <i class="fas fa-arrow-right"></i></div>
+      </div>
+      <div class="card-glow"></div>
+    </a>
+    <a href="Index.html" class="category-card">
+      <div class="card-bg" id="dance-bg"></div>
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <div class="card-icon"><i class="fas fa-person-walking"></i></div>
+        <div class="card-title">Choreography</div>
+        <div class="card-desc">Explore dance styles from around the world and book classes.</div>
+        <div class="card-arrow">Explore <i class="fas fa-arrow-right"></i></div>
+      </div>
+      <div class="card-glow"></div>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label"><span class="line"></span>ABOUT US</div>
+      <h2>One Platform.<br><span>Infinite</span> Possibilities.</h2>
+      <p>Pixel Cluster is a unified digital platform designed to bring knowledge, entertainment, and creativity together in one virtual space. We provide users with easy access to books, movies, music, and creative learning experiences through a modern and user-friendly interface.</p>
+      <p>Our Virtual Library allows users to explore, purchase, and enjoy a wide range of books in both digital and physical formats, while other sections offer immersive experiences in cinema, music, and choreography.</p>
+      <div class="about-stats">
+        <div class="stat-item"><span class="stat-number">400K+</span><span class="stat-label">Videos</span></div>
+        <div class="stat-item"><span class="stat-number">Free</span><span class="stat-label">Streaming</span></div>
+        <div class="stat-item"><span class="stat-number">No Ads</span><span class="stat-label">Experience</span></div>
+      </div>
+    </div>
+    <div class="about-features">
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-bolt"></i></div><div class="feature-title">Fast Streaming</div><div class="feature-desc">Free and fast streaming servers with no buffering.</div></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-user-shield"></i></div><div class="feature-title">No Account Needed</div><div class="feature-desc">Start watching instantly with zero registration.</div></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-mouse-pointer"></i></div><div class="feature-title">One Click Play</div><div class="feature-desc">Seamless one-click streaming experience.</div></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-halved"></i></div><div class="feature-title">Safe & Secure</div><div class="feature-desc">A reliable and secure browsing environment.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE OFFER -->
+<section class="offer-section">
+  <div style="text-align:center;">
+    <div class="section-label" style="justify-content:center;"><span class="line"></span>SERVICES<span class="line"></span></div>
+    <h2 class="section-heading">What We Offer</h2>
+  </div>
+  <div class="offer-grid">
+    <div class="offer-card"><span class="offer-icon">📚</span><div class="offer-title">Virtual Library</div><div class="offer-desc">Browse, purchase, and access books in softcopy and hardcopy formats across multiple categories.</div></div>
+    <div class="offer-card"><span class="offer-icon">🎬</span><div class="offer-title">Virtual Theatre</div><div class="offer-desc">Access virtual theatres for movies with a massive collection of titles.</div></div>
+    <div class="offer-card"><span class="offer-icon">🎵</span><div class="offer-title">Music Collection</div><div class="offer-desc">Curated music collections across genres and interactive music experiences.</div></div>
+    <div class="offer-card"><span class="offer-icon">💃</span><div class="offer-title">Dance & Music Classes</div><div class="offer-desc">Interactive music and choreography classes with expert instructors.</div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="pc-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">PIXEL CLUSTER</div>
+      <p>Your unified digital platform for books, movies, music, and creative learning experiences. Where stories, screens, and sounds collide.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="1home.html">Movies</a><a href="Songs Home page.html">Songs</a><a href="1. Books Main.html">Library</a><a href="MusicClassesMain.html">Music Classes</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="help.html">Help Center</a><a href="contact.html">Contact Us</a><a href="settings.html">Settings</a><a href="troubleshoot.html">Troubleshoot</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:pixelcluster@gmail.com"><i class="fas fa-envelope"></i> pixelcluster@gmail.com</a>
+      <a href="#"><i class="fas fa-phone"></i> +94 XX XXX XXXX</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Pixel Cluster. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Category card background slideshows
+function startSlideshow(id, images) {
+  let i = 0; const el = document.getElementById(id); if (!el) return;
+  el.style.backgroundImage = `url('${images[i]}')`;
+  setInterval(() => { i = (i + 1) % images.length; el.style.backgroundImage = `url('${images[i]}')`; }, 4000);
+}
+startSlideshow("songs-bg", ["0.apt.main.songs.jpeg","0.alan walker.songs.main.jpg","0.songs2.jpg"]);
+startSlideshow("movies-bg", ["0.movies.jpg","0.movies1.jpg","0.movies2.jpg"]);
+startSlideshow("library-bg", ["0.books.jpg","0.books1.jpg","0.books2.jpg"]);
+startSlideshow("music-bg", ["0.music1.jpg","0.music2.jpg","0.music3.jpg"]);
+startSlideshow("dance-bg", ["0.chore.ballet.jpg","0.Ballroom.main.choreo.jpg","0.chore1.jpg"]);
+
+// Scroll reveal animations
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.category-card,.feature-card,.offer-card,.stat-item').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
+  obs.observe(el);
+});
+</script>
+<script src="navbar.js"></script>
+</body>
+</html>
