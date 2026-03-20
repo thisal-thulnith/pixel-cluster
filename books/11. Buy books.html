@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pixel Cluster | Purchase Books</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/navbar.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ===== DARK FUTURISTIC NETFLIX THEME ===== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+font[color], font { color: var(--text) !important }
+a { color: var(--accent); text-decoration: none; transition: color .3s ease }
+a:hover { color: var(--accent-hover) }
+
+/* ================= HEADER ================= */
+header {
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 1.2rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  color: var(--accent);
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+header p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* ================= FORM CONTAINER ================= */
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* ================= FORM ================= */
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+form input, form select {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.4rem;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  background: var(--bg-secondary);
+  color: var(--text);
+  outline: none;
+  font-size: 0.95rem;
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+
+form input:focus, form select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+form input::placeholder { color: var(--text-muted) }
+
+.radio-group {
+  margin-top: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.radio-group input {
+  width: auto;
+  accent-color: var(--accent);
+}
+
+.price-box {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ================= BUTTON ================= */
+button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .3s ease, box-shadow .3s ease, transform .2s ease;
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+button:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 6px 25px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  text-align: center;
+  font-size: 0.85rem;
+  margin: 2rem 0;
+  color: var(--text-secondary);
+}
+footer a { color: var(--accent) }
+</style>
+</head>
+
+<body>
+<nav class="pc-nav">
+    <a href="../0.Home%20page%202.html" class="pc-nav-brand">
+        <div class="pc-nav-logo">PC</div>
+        <span class="pc-nav-brand-text">PIXEL CLUSTER</span>
+    </a>
+    <div class="pc-nav-links">
+        <a href="../0.Home%20page%202.html"><i class="fas fa-home"></i> Home</a>
+        <a href="../movies/1home.html"><i class="fas fa-film"></i> Movies</a>
+        <a href="../songs/Songs%20Home%20page.html"><i class="fas fa-music"></i> Songs</a>
+        <a href="1.%20Books%20Main.html"><i class="fas fa-book"></i> Library</a>
+        <a href="../music-classes/MusicClassesMain.html"><i class="fas fa-guitar"></i> Music Classes</a>
+        <a href="../dance/Index.html"><i class="fas fa-person-walking"></i> Dance</a>
+        <a href="../help/help.html"><i class="fas fa-circle-question"></i> Help</a>
+    </div>
+    <div class="pc-nav-right">
+        <button class="pc-nav-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<div class="pc-breadcrumb">
+    <a href="../0.Home%20page%202.html"><i class="fas fa-home"></i> Home</a>
+    <span class="sep"><i class="fas fa-chevron-right"></i></span>
+    <a href="1.%20Books%20Main.html">Library</a>
+    <span class="sep"><i class="fas fa-chevron-right"></i></span>
+    <span class="current">Purchase Books</span>
+</div>
+
+
+<header>
+  <h1>Pixel Cluster</h1>
+  <p>Virtual Library – Book Purchase</p>
+</header>
+
+<div class="container">
+
+  <form id="purchaseForm">
+
+    <label>Full Name</label>
+    <input type="text" placeholder="Enter your name or username" required>
+
+    <label>Email Address</label>
+    <input type="email" placeholder="Enter your email" required>
+
+    <label>Book Title</label>
+    <input type="text" placeholder="Enter book name" required>
+
+    <label>Book Category</label>
+    <select required>
+      <option value="">Select category</option>
+      <option>Novels</option>
+      <option>Educational</option>
+      <option>Kids' Books</option>
+      <option>Biographies</option>
+      <option>Past Papers</option>
+      <option>Programming & Technology</option>
+    </select>
+
+    <label>Book Format</label>
+    <div class="radio-group">
+      <input type="radio" name="format" value="soft" checked onclick="updatePrice()"> Softcopy (PDF) <br>
+      <input type="radio" name="format" value="hard" onclick="updatePrice()"> Hardcopy (Delivered)
+    </div>
+      
+    <label>Address (If Hardcopy)</label>
+    <input type="text" placeholder="Enter your address" required>
+
+    <label>Payment Method</label>
+    <select required>
+      <option>Credit / Debit Card</option>
+      <option>Mobile Payment</option>
+      <option>Bank Transfer</option>
+    </select>
+
+    <div class="price-box">
+      Total Price: <span id="price">LKR 800</span>
+    </div>
+
+    <button type="submit">Confirm Purchase</button>
+
+  </form>
+
+</div>
+
+<footer>
+  © Pixel Cluster – Virtual Library
+</footer>
+
+<script>
+/* ================= PRICE LOGIC ================= */
+function updatePrice() {
+  const format = document.querySelector('input[name="format"]:checked').value;
+  const price = document.getElementById("price");
+
+  if (format === "soft") {
+    price.innerText = "LKR 800";
+  } else {
+    price.innerText = "LKR 1500";
+  }
+}
+
+/* ================= FORM SUBMIT ================= */
+document.getElementById("purchaseForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  alert("✅ Purchase successful!\nThank you for using Pixel Cluster Virtual Library.");
+});
+</script>
+
+<script src="../js/navbar.js"></script>
+</body>
+</html>

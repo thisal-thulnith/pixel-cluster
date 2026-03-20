@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Music Class Details</title>
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/navbar.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* -------- GLOBAL -------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* -------- NAVBAR -------- */
+nav {
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: var(--transition);
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* -------- CONTAINER -------- */
+.container {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text);
+}
+
+/* -------- INFO CARD -------- */
+.info {
+  max-width: 600px;
+  margin: 30px auto 0;
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  padding: 36px;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  transition: var(--transition);
+}
+
+.info:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 20px var(--accent-glow);
+  border-color: rgba(229,9,20,0.15);
+}
+
+.info p {
+  color: var(--text-secondary);
+  font-size: 16px;
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+/* -------- BUTTON -------- */
+button {
+  margin-top: 24px;
+  padding: 12px 32px;
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: var(--transition);
+  letter-spacing: 0.3px;
+}
+
+button:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+/* -------- FOOTER -------- */
+footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 16px 5px;
+  font-size: 14px;
+}
+
+footer a {
+  color: var(--text-secondary) !important;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+footer a:hover {
+  color: var(--accent) !important;
+}
+
+footer a:visited {
+  color: var(--text-secondary) !important;
+}
+
+footer a:active {
+  color: var(--text-secondary) !important;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="pc-nav">
+    <a href="../0.Home%20page%202.html" class="pc-nav-brand">
+        <div class="pc-nav-logo">PC</div>
+        <span class="pc-nav-brand-text">PIXEL CLUSTER</span>
+    </a>
+    <div class="pc-nav-links">
+        <a href="../0.Home%20page%202.html"><i class="fas fa-home"></i> Home</a>
+        <a href="../movies/1home.html"><i class="fas fa-film"></i> Movies</a>
+        <a href="../songs/Songs%20Home%20page.html"><i class="fas fa-music"></i> Songs</a>
+        <a href="../books/1.%20Books%20Main.html"><i class="fas fa-book"></i> Library</a>
+        <a href="MusicClassesMain.html"><i class="fas fa-guitar"></i> Music Classes</a>
+        <a href="../dance/Index.html"><i class="fas fa-person-walking"></i> Dance</a>
+        <a href="../help/help.html"><i class="fas fa-circle-question"></i> Help</a>
+    </div>
+    <div class="pc-nav-right">
+        <button class="pc-nav-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<div class="pc-breadcrumb">
+    <a href="../0.Home%20page%202.html"><i class="fas fa-home"></i> Home</a>
+    <span class="sep"><i class="fas fa-chevron-right"></i></span>
+    <a href="MusicClassesMain.html">Music Classes</a>
+    <span class="sep"><i class="fas fa-chevron-right"></i></span>
+    <span class="current">Music Class Details</span>
+</div>
+
+<div class="container">
+  <h2> Piano Classes</h2>
+
+  <div class="info">
+    <p>Duration: 3 Months</p>
+    <p>Level: Beginner to Advanced</p>
+    <p>Mode: Online & Physical</p>
+    <p>Certified Instructors</p>
+    <button>Proceed to Registration</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer">
+  <table align="center">
+    <tr > 
+        <td width= "700"><a href="#" >📞 Contact us<br></a><a href="mailto:pixelcluster@gmail.com" >Email to us: 🔗 pixelcluster@gmail.com</a><br>Phone: +94 XX XXX XXXX </td>
+        <td width= "700"><a href='../0.Home%20page%202.html' class="footer"><p>© 2026 Pixel Cluster</p></a></td>
+        <td width= "700"><a href="#">⚙️ Settings</a></td>
+    </tr>    
+  </table>
+</div>
+</footer>
+
+<script src="../js/navbar.js"></script>
+</body>
+</html>

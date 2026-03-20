@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Troubleshoot</title>
+        <link rel="stylesheet" href="../css/global.css">
+        <link rel="stylesheet" href="../css/navbar.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="../css/Style.css">
+    </head>
+
+    <body>
+        <div class="pc-bg-glow"></div>
+
+        <nav class="pc-nav">
+            <a href="../0.Home%20page%202.html" class="pc-nav-brand">
+                <div class="pc-nav-logo">PC</div>
+                <span class="pc-nav-brand-text">PIXEL CLUSTER</span>
+            </a>
+            <div class="pc-nav-links">
+                <a href="../0.Home%20page%202.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../movies/1home.html"><i class="fas fa-film"></i> Movies</a>
+                <a href="../songs/Songs%20Home%20page.html"><i class="fas fa-music"></i> Songs</a>
+                <a href="../books/1.%20Books%20Main.html"><i class="fas fa-book"></i> Library</a>
+                <a href="../music-classes/MusicClassesMain.html"><i class="fas fa-guitar"></i> Music Classes</a>
+                <a href="../dance/Index.html"><i class="fas fa-person-walking"></i> Dance</a>
+                <a href="help.html" class="active"><i class="fas fa-circle-question"></i> Help</a>
+            </div>
+            <div class="pc-nav-right">
+                <button class="pc-nav-toggle"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+
+        <div class="pc-breadcrumb">
+            <a href="../0.Home%20page%202.html">Home</a> &gt; <a href="help.html">Help</a> &gt; <span>Troubleshoot</span>
+        </div>
+
+        <div class="pc-page-header">
+            <h1>Troubleshoot</h1>
+            <p>Having Trouble? We're Here to Help.</p>
+        </div>
+
+    <main class="content">
+        <h2>Troubleshooting Guide</h2>
+<p>Select your problem to see step-by-step solution.</p>
+
+<div class="problems">
+    <button onclick="showSolution('video')" class="button-trouble">Video Not Playing</button>
+    <button onclick="showSolution('booking')" class="button-trouble">Booking Not Working</button>
+    <button onclick="showSolution('login')" class="button-trouble">Login Problem</button>
+    <button onclick="showSolution('page')" class="button-trouble">Page Not Loading</button>
+</div>
+
+<div id="solutionBox"></div>
+
+<script>
+function showSolution(type){
+
+    var solution = "";
+
+    if(type === "video"){
+        solution = `
+        <h3>Video Not Playing</h3>
+        <ol>
+            <li>Check your internet connection.</li>
+            <li>Refresh the page.</li>
+            <li>Make sure your browser supports MP4 format.</li>
+            <li>Clear browser cache.</li>
+            <li>Try using Google Chrome.</li>
+        </ol>`;
+    }
+
+    else if(type === "booking"){
+        solution = `
+        <h3>Booking Not Working</h3>
+        <ol>
+            <li>Make sure all fields are filled correctly.</li>
+            <li>Check if date and time are selected.</li>
+            <li>Ensure internet connection is stable.</li>
+            <li>Refresh the booking page.</li>
+            <li>Contact support if issue continues.</li>
+        </ol>`;
+    }
+
+    else if(type === "login"){
+        solution = `
+        <h3>Login Problem</h3>
+        <ol>
+            <li>Check your email and password.</li>
+            <li>Make sure Caps Lock is off.</li>
+            <li>Click "Forgot Password" if needed.</li>
+            <li>Clear browser cookies.</li>
+            <li>Try again after refreshing.</li>
+        </ol>`;
+    }
+
+    else if(type === "page"){
+        solution = `
+        <h3>Page Not Loading</h3>
+        <ol>
+            <li>Check internet connection.</li>
+            <li>Refresh the page.</li>
+            <li>Clear browser cache.</li>
+            <li>Restart your browser.</li>
+            <li>Try another browser.</li>
+        </ol>`;
+    }
+
+    document.getElementById("solutionBox").innerHTML = solution;
+}
+</script>
+    </main>
+
+    <footer class="pc-footer">
+        <div class="pc-footer-content">
+            <div class="pc-footer-links">
+                <a href="../0.Home%20page%202.html">Home</a>
+                <a href="../movies/1home.html">Movies</a>
+                <a href="../songs/Songs%20Home%20page.html">Songs</a>
+                <a href="../books/1.%20Books%20Main.html">Library</a>
+                <a href="help.html">Help</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <p>&copy; 2026 <strong>Pixel Cluster</strong>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/navbar.js"></script>
+    </body>
+    </html>

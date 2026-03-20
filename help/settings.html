@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Settings</title>
+        <link rel="stylesheet" href="../css/global.css">
+        <link rel="stylesheet" href="../css/navbar.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="../css/Style.css">
+    </head>
+
+    <body>
+        <div class="pc-bg-glow"></div>
+
+        <nav class="pc-nav">
+            <a href="../0.Home%20page%202.html" class="pc-nav-brand">
+                <div class="pc-nav-logo">PC</div>
+                <span class="pc-nav-brand-text">PIXEL CLUSTER</span>
+            </a>
+            <div class="pc-nav-links">
+                <a href="../0.Home%20page%202.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../movies/1home.html"><i class="fas fa-film"></i> Movies</a>
+                <a href="../songs/Songs%20Home%20page.html"><i class="fas fa-music"></i> Songs</a>
+                <a href="../books/1.%20Books%20Main.html"><i class="fas fa-book"></i> Library</a>
+                <a href="../music-classes/MusicClassesMain.html"><i class="fas fa-guitar"></i> Music Classes</a>
+                <a href="../dance/Index.html"><i class="fas fa-person-walking"></i> Dance</a>
+                <a href="help.html" class="active"><i class="fas fa-circle-question"></i> Help</a>
+            </div>
+            <div class="pc-nav-right">
+                <button class="pc-nav-toggle"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+
+        <div class="pc-breadcrumb">
+            <a href="../0.Home%20page%202.html">Home</a> &gt; <a href="help.html">Help</a> &gt; <span>Settings</span>
+        </div>
+
+        <div class="pc-page-header">
+            <h1>Settings</h1>
+            <p>Control. Customize. Continue.</p>
+        </div>
+
+    <main class="content">
+        <h2>Account Settings</h2>
+<p>Select what you want to change.</p>
+
+<div class="settings-buttons">
+    <button onclick="showSetting('password')" class="button-Setting">Change Password</button>
+    <button onclick="showSetting('email')" class="button-Setting">Change Email</button>
+    <button onclick="showSetting('notifications')" class="button-Setting">Notification Settings</button>
+    <button onclick="showSetting('privacy')" class="button-Setting">Privacy Settings</button>
+</div>
+
+<div id="settingBox"></div>
+
+<script>
+
+function showSetting(type){
+
+    let content = "";
+
+    if(type === "password"){
+        content = `
+        <h3>Change Password</h3>
+        <input type="password" placeholder="Current Password"><br><br>
+        <input type="password" placeholder="New Password"><br><br>
+        <input type="password" placeholder="Confirm Password"><br><br>
+        <button onclick="updatePassword()">Update Password</button>
+        `;
+    }
+
+    else if(type === "email"){
+        content = `
+        <h3>Change Email</h3>
+        <input type="email" placeholder="New Email"><br><br>
+        <button onclick="updateEmail()">Update Email</button>
+        `;
+    }
+
+    else if(type === "notifications"){
+        content = `
+        <h3>Notification Settings</h3>
+        <input type="checkbox"> Email Notifications<br>
+        <input type="checkbox"> SMS Notifications<br><br>
+        <button onclick="saveNotifications()">Save Preferences</button>
+        `;
+    }
+
+    else if(type === "privacy"){
+        content = `
+        <h3>Privacy Settings</h3>
+        <input type="checkbox"> Make Profile Public<br>
+        <input type="checkbox"> Show Booking History<br><br>
+        <button onclick="savePrivacy()">Save Settings</button>
+        `;
+    }
+
+    document.getElementById("settingBox").innerHTML = content;
+}
+
+
+// Confirm Functions
+
+function updatePassword(){
+    if(confirm("Are you sure you want to update your password?")){
+        alert("Password Updated Successfully!");
+    } else {
+        alert("Password update cancelled.");
+    }
+}
+
+function updateEmail(){
+    if(confirm("Are you sure you want to update your email?")){
+        alert("Email Updated Successfully!");
+    } else {
+        alert("Email update cancelled.");
+    }
+}
+
+function saveNotifications(){
+    if(confirm("Save notification settings?")){
+        alert("Preferences Saved!");
+    } else {
+        alert("Operation cancelled.");
+    }
+}
+
+function savePrivacy(){
+    if(confirm("Save privacy settings?")){
+        alert("Privacy Settings Saved!");
+    } else {
+        alert("Operation cancelled.");
+    }
+}
+
+</script>
+
+
+    </main>
+
+    <footer class="pc-footer">
+        <div class="pc-footer-content">
+            <div class="pc-footer-links">
+                <a href="../0.Home%20page%202.html">Home</a>
+                <a href="../movies/1home.html">Movies</a>
+                <a href="../songs/Songs%20Home%20page.html">Songs</a>
+                <a href="../books/1.%20Books%20Main.html">Library</a>
+                <a href="help.html">Help</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <p>&copy; 2026 <strong>Pixel Cluster</strong>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/navbar.js"></script>
+    </body>
+    </html>

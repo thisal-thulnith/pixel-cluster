@@ -1,0 +1,613 @@
+<!doctype html>
+<!-- music-books.html
+     Pixel Cluster — Music Books (HTML + CSS only)
+     Theme colors: purple, black, silver
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pixel Cluster — Music Books</title>
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/navbar.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6}
+  font[color],font{color:var(--text) !important}
+  a{color:var(--accent);text-decoration:none;transition:color .3s ease}
+  a:hover{color:var(--accent-hover)}
+  .container{max-width:1400px;margin:0 auto;padding:1rem 1.5rem}
+
+  header.hero{background:var(--surface);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);color:var(--text);padding:1.2rem 1.5rem;border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center;gap:1rem;margin:1rem 0;box-shadow:0 8px 32px rgba(0,0,0,.4);transition:var(--transition)}
+  header.hero:hover{border-color:rgba(229,9,20,.2);box-shadow:0 8px 32px rgba(229,9,20,.08)}
+
+  .brand{display:flex;align-items:center;gap:.8rem}
+  .logo{width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,#e50914,#b20710);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:22px;font-family:'Cooper Black',serif;box-shadow:0 4px 15px var(--accent-glow);transition:transform .3s ease,box-shadow .3s ease}
+  .logo:hover{transform:scale(1.08);box-shadow:0 6px 25px var(--accent-glow)}
+  h1{margin:0;font-size:1.6rem;color:var(--text);font-weight:700;letter-spacing:-.02em}
+  p.lead{margin:0;color:var(--text-secondary);font-size:.88rem}
+
+  .controls{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:1rem 0}
+  .search{flex:1;min-width:200px}
+  .search input{width:100%;padding:.65rem 1rem;border-radius:10px;border:1px solid var(--glass-border);background:var(--surface);color:var(--text);font-size:.95rem;transition:var(--transition)}
+  .search input::placeholder{color:var(--text-muted)}
+  .search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+  .small-btn{padding:.5rem .9rem;border-radius:10px;border:1px solid var(--glass-border);background:var(--glass);color:var(--text);font-size:.88rem;cursor:pointer;transition:var(--transition);text-decoration:none}
+  .small-btn:hover{background:var(--accent);border-color:var(--accent);color:white;box-shadow:0 4px 15px var(--accent-glow)}
+
+  .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin:.6rem 0}
+  .chip{padding:.4rem .75rem;border-radius:999px;border:1px solid var(--glass-border);background:var(--glass);font-size:.85rem;color:var(--text-secondary);cursor:pointer;transition:var(--transition)}
+  .chip:hover{border-color:var(--accent);color:var(--text);background:rgba(229,9,20,.1)}
+  .chip.current{background:var(--accent);color:white;border-color:var(--accent);box-shadow:0 2px 10px var(--accent-glow)}
+
+  .results-meta{display:flex;justify-content:space-between;align-items:center;color:var(--text-secondary);font-size:.92rem;margin-bottom:.6rem}
+
+  .grid{display:grid;gap:1.2rem;grid-template-columns:1fr}
+  @media(min-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+
+  .card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.3);display:flex;flex-direction:column;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+  .card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(229,9,20,.15);border-color:rgba(229,9,20,.3)}
+
+  .thumb{width:100%;height:0;padding-bottom:60%;position:relative;overflow:hidden;background:var(--bg-secondary)}
+  .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+  .thumb:hover img{transform:scale(1.05)}
+
+  .card-body{padding:1rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+  .title{font-weight:700;margin:0;font-size:1.05rem;color:var(--text)}
+  .meta{margin:0;color:var(--text-muted);font-size:.85rem}
+  .info{color:var(--text-secondary);font-size:.9rem;margin-top:.25rem;flex:1}
+
+  .card-footer{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-top:.6rem}
+  .cta{display:inline-block;padding:.5rem .8rem;border-radius:10px;background:var(--accent);color:white;text-decoration:none;font-weight:600;font-size:.88rem;transition:var(--transition);box-shadow:0 2px 10px var(--accent-glow)}
+  .cta:hover{background:var(--accent-hover);color:white;box-shadow:0 4px 20px var(--accent-glow);transform:translateY(-1px)}
+  .link-plain{color:var(--accent);text-decoration:none;font-weight:600;transition:var(--transition)}
+  .link-plain:hover{color:var(--accent-hover)}
+
+  details{margin-top:.5rem;border-top:1px solid var(--glass-border);padding-top:.5rem}
+  details summary{list-style:none;cursor:pointer;font-size:.9rem;color:var(--text-secondary);padding:.3rem 0;transition:var(--transition)}
+  details summary:hover{color:var(--accent)}
+  details[open] summary{color:var(--accent)}
+  .detail-body{color:var(--text-muted);font-size:.88rem;margin-top:.4rem;line-height:1.5}
+
+  footer{background:var(--surface);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);color:var(--text-secondary);text-align:center;padding:1.2rem;border-radius:var(--radius);margin-top:2rem;font-size:.9rem}
+  footer a{color:var(--accent)}
+  footer a:hover{color:var(--accent-hover)}
+  footer p{color:var(--text-secondary)}
+  footer.page-foot{text-align:center;margin:1.5rem 0;color:var(--text-secondary);font-size:.9rem}
+</style>
+</head>
+    
+    
+    
+    
+<body>
+<nav class="pc-nav">
+    <a href="../0.Home%20page%202.html" class="pc-nav-brand">
+        <div class="pc-nav-logo">PC</div>
+        <span class="pc-nav-brand-text">PIXEL CLUSTER</span>
+    </a>
+    <div class="pc-nav-links">
+        <a href="../0.Home%20page%202.html"><i class="fas fa-home"></i> Home</a>
+        <a href="../movies/1home.html"><i class="fas fa-film"></i> Movies</a>
+        <a href="../songs/Songs%20Home%20page.html"><i class="fas fa-music"></i> Songs</a>
+        <a href="1.%20Books%20Main.html"><i class="fas fa-book"></i> Library</a>
+        <a href="../music-classes/MusicClassesMain.html"><i class="fas fa-guitar"></i> Music Classes</a>
+        <a href="../dance/Index.html"><i class="fas fa-person-walking"></i> Dance</a>
+        <a href="../help/help.html"><i class="fas fa-circle-question"></i> Help</a>
+    </div>
+    <div class="pc-nav-right">
+        <button class="pc-nav-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<div class="pc-breadcrumb">
+    <a href="../0.Home%20page%202.html"><i class="fas fa-home"></i> Home</a>
+    <span class="sep"><i class="fas fa-chevron-right"></i></span>
+    <a href="1.%20Books%20Main.html">Library</a>
+    <span class="sep"><i class="fas fa-chevron-right"></i></span>
+    <span class="current">Music Books</span>
+</div>
+
+<div class="container">
+
+  <!-- Header -->
+  <header class="hero">
+    <div class="brand">
+      <div class="logo">PC</div>
+      <div>
+        <h1>Pixel Cluster — Music Books</h1>
+        <p class="lead">Learn, compose, and explore music — scores, theory, and history.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:.6rem;align-items:center">
+      <a class="small-btn" href="#">Upload</a>
+      <a class="small-btn" href="#">Sign in</a>
+    </div>
+  </header>
+
+  <!-- Controls -->
+  <div class="controls">
+    <div>
+      <h2 style="margin:.1rem 0;font-size:1.05rem">Music Books Collection</h2>
+      <p style="margin:0;color:var(--muted);font-size:.9rem">Sheet music, theory books, biographies of composers and music guides.</p>
+    </div>
+    <div style="margin-left:auto;display:flex;gap:.5rem;align-items:center">
+      <div class="search">
+        <input type="search" placeholder="Search title, composer, or genre (visual only)">
+      </div>
+      <button class="small-btn">Sort</button>
+    </div>
+  </div>
+
+  <!-- Chips -->
+  <div class="chips">
+    <button class="chip current">All</button>
+    <button class="chip">Theory</button>
+    <button class="chip">Sheet Music</button>
+    <button class="chip">Biography</button>
+    <button class="chip">History</button>
+  </div>
+
+  <!-- Grid -->
+  <section class="grid">
+      
+<!-- ============WORK 1============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work1.jpg" alt="Music Theory Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">The Complete Music Theory Guide</h3>
+        <p class="meta">By John Smith</p>
+        <p class="info">Comprehensive guide to harmony, melody, and rhythm for students and composers.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • Pages: 340 • Published: 2023</div>
+        </details>
+      </div>
+    </article>
+
+<!-- ============WORK 2============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work2.jpg" alt="Piano Sheet Music cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">Piano Classics — Sheet Music Collection</h3>
+        <p class="meta">By Anna Lee</p>
+        <p class="info">A selection of classic piano compositions for intermediate players.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • Pages: 120 • Includes practice tips</div>
+        </details>
+      </div>
+    </article>
+
+<!-- ============WORK 3============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work3.jpg" alt="Composer Biography cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">Beethoven: Life and Music</h3>
+        <p class="meta">By Emily Roberts</p>
+        <p class="info">Biography covering Beethoven's life, compositions, and legacy.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Published: 2021 • 280 pages • PDF format</div>
+        </details>
+      </div>
+    </article>
+
+<!-- ============WORK 4============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work4.jpg" alt="History of Music cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">History of Western Music</h3>
+        <p class="meta">By David Johnson</p>
+        <p class="info">From medieval to modern eras — overview of composers, genres, and styles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 450 pages • Includes illustrations</div>
+        </details>
+      </div>
+    </article>
+
+<!-- ============WORK 5============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work5.jpg.jpg" alt="Guitar Practice Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">Guitar Techniques for Beginners</h3>
+        <p class="meta">By Mark Allen</p>
+        <p class="info">Step-by-step exercises for learning chords, scales, and fingerstyle techniques.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 150 pages • Published 2022</div>
+        </details>
+      </div>
+    </article>
+
+<!-- ============WORK 6============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work6.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">Composing Music: From Idea to Score</h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">Techniques for composing, arranging, and orchestrating music for various ensembles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 7============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work7.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">Alfred's Essentials of Music Theory: A widely used starting point, often with workbooks.</h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">Techniques for composing, arranging, and orchestrating music for various ensembles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 8============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work8.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">The Complete Idiot's Guide to Music Theory / Music Theory for Dummies: Accessible introductions to core concepts</h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">Techniques for composing, arranging, and orchestrating music for various ensembles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 9============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work9.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">The Complete Musician (Laitz): Comprehensive for general study.</h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">Techniques for composing, arranging, and orchestrating music for various ensembles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 10============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work10.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">Harmony and Voice Leading (Aldwell & Schachter): A classic, in-depth text.</h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">Techniques for composing, arranging, and orchestrating music for various ensembles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 11============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work11.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">Alfred's Basic Adult All-in-One Piano Course: </h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">This is a highly recommended series that covers lessons, theory, and technique in a single book, progressing step-by-step.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 12============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work12.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">A Practical Method for Violin</h3>
+        <p class="meta">(C.H. Hohmann or N. Laoureux)</p>
+        <p class="info">Widely used method books with a systematically arranged course of exercises for a thorough grounding in violin playing.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 13============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work13.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">School for Violin Technics</h3>
+        <p class="meta">By Henry Schradieck</p>
+        <p class="info">Focuses on technical exercises, scales, and finger dexterity for intermediate to advanced players</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 14============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work14.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">Music: The Definitive Visual History (DK)</h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">Techniques for composing, arranging, and orchestrating music for various ensembles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 15============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work15.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">My First Piano Songbook, Poco Piano, Meet George Gershwin at the Keyboard</h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">Techniques for composing, arranging, and orchestrating music for various ensembles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 16============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work16.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">This Is Your Brain on Music by Daniel J. Levitin: Music's cognitive science.</h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">Techniques for composing, arranging, and orchestrating music for various ensembles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 17============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work17.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">The Soundscape by R. Murray Schafer: Pioneering work on our sonic environment.</h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">Techniques for composing, arranging, and orchestrating music for various ensembles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 18============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work18.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">Musicophilia: </h3>
+        <p class="meta">By Oliver Sacks</p>
+        <p class="info">Tales of Music and the Brain : Explores neurological conditions related to music</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 19============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work19.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">Music, Language, and the Brain by Aniruddh D. Patel: Connects music and language processing in the brain</h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">Techniques for composing, arranging, and orchestrating music for various ensembles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 20============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work20.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">Composing Music: From Idea to Score</h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">Techniques for composing, arranging, and orchestrating music for various ensembles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+      
+<!-- ============WORK 21============ -->
+    <article class="card">
+      <div class="thumb">
+        <img src="../img/7.work21.jpg" alt="Music Composition Book cover">
+      </div>
+      <div class="card-body">
+        <h3 class="title">Music Theory Practice Papers (ABRSM): Essential for exam prep, these provide actual past papers (with model answers available) for different grades, like Grade 5 or Grade 1.</h3>
+        <p class="meta">By Sophia Green</p>
+        <p class="info">Techniques for composing, arranging, and orchestrating music for various ensembles.</p>
+        <div class="card-footer">
+          <a class="cta" href="#">Read</a>
+          <a class="link-plain" href="#">Download</a>
+        </div>
+        <details>
+          <summary>More details</summary>
+          <div class="detail-body">Format: PDF • 320 pages • Published 2020</div>
+        </details>
+      </div>
+    </article>
+  </section>
+    
+
+  <!-- ==========FOOTER========= -->
+    <br>
+    <hr>
+    <hr>
+    <footer><font face="time new roman" color="white"><i><center>
+    © <strong>Pixel Cluster</strong>
+    <br>
+    Experience seamless access to scholarly resources, literature, music, songs, movies and dance moves from anywhere in the world
+    </center>
+    <br>
+    <br>
+    <hr>
+    <hr>
+    <br><br>
+    <center>
+    <table>
+    <tr>
+    <td>
+    <a href="../help/help.html">Privacy Policy</a>
+    </td>
+    <td><font color="pale">_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</font></td>    
+    <td>
+    <a href="../help/contact.html">Contact us</a>
+    </td>
+    </tr>
+    </table>
+    </center>
+    </i>
+    </font>
+    </footer>
+
+</div>
+<script src="../js/navbar.js"></script>
+</body>
+</html>

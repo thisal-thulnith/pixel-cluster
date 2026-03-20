@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pixel Cluster | Home</title>
-<link rel="stylesheet" href="global.css">
-<link rel="stylesheet" href="navbar.css">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 /* ===== HERO — CINEMATIC FULL-SCREEN ===== */
@@ -432,18 +432,18 @@
 
 <!-- NAVBAR -->
 <nav class="pc-nav">
-  <a href="0.Home page 2.html" class="pc-nav-brand">
+  <a href="0.Home%20page%202.html" class="pc-nav-brand">
     <div class="pc-nav-logo">PC</div>
     <span class="pc-nav-brand-text">PIXEL CLUSTER</span>
   </a>
   <div class="pc-nav-links">
-    <a href="0.Home page 2.html" class="active"><i class="fas fa-home"></i> Home</a>
-    <a href="1home.html"><i class="fas fa-film"></i> Movies</a>
-    <a href="Songs Home page.html"><i class="fas fa-music"></i> Songs</a>
-    <a href="1. Books Main.html"><i class="fas fa-book"></i> Library</a>
-    <a href="MusicClassesMain.html"><i class="fas fa-guitar"></i> Music Classes</a>
-    <a href="Index.html"><i class="fas fa-person-walking"></i> Dance</a>
-    <a href="help.html"><i class="fas fa-circle-question"></i> Help</a>
+    <a href="0.Home%20page%202.html" class="active"><i class="fas fa-home"></i> Home</a>
+    <a href="movies/1home.html"><i class="fas fa-film"></i> Movies</a>
+    <a href="songs/Songs%20Home%20page.html"><i class="fas fa-music"></i> Songs</a>
+    <a href="books/1.%20Books%20Main.html"><i class="fas fa-book"></i> Library</a>
+    <a href="music-classes/MusicClassesMain.html"><i class="fas fa-guitar"></i> Music Classes</a>
+    <a href="dance/Index.html"><i class="fas fa-person-walking"></i> Dance</a>
+    <a href="help/help.html"><i class="fas fa-circle-question"></i> Help</a>
   </div>
   <div class="pc-nav-right">
     <button class="pc-nav-toggle"><i class="fas fa-bars"></i></button>
@@ -490,7 +490,7 @@
     </p>
 
     <div class="hero-cta">
-      <a href="1home.html" class="btn-primary">
+      <a href="movies/1home.html" class="btn-primary">
         <i class="fas fa-play"></i> Start Exploring
       </a>
       <a href="#categories" class="btn-ghost">
@@ -530,7 +530,7 @@
   <div class="section-label"><span class="line"></span>EXPLORE</div>
   <h2 class="section-heading">Discover Your World</h2>
   <div class="categories-grid">
-    <a href="Songs Home page.html" class="category-card">
+    <a href="songs/Songs%20Home%20page.html" class="category-card">
       <div class="card-bg" id="songs-bg"></div>
       <div class="card-overlay"></div>
       <div class="card-content">
@@ -541,7 +541,7 @@
       </div>
       <div class="card-glow"></div>
     </a>
-    <a href="1home.html" class="category-card">
+    <a href="movies/1home.html" class="category-card">
       <div class="card-bg" id="movies-bg"></div>
       <div class="card-overlay"></div>
       <div class="card-content">
@@ -552,7 +552,7 @@
       </div>
       <div class="card-glow"></div>
     </a>
-    <a href="1. Books Main.html" class="category-card">
+    <a href="books/1.%20Books%20Main.html" class="category-card">
       <div class="card-bg" id="library-bg"></div>
       <div class="card-overlay"></div>
       <div class="card-content">
@@ -563,7 +563,7 @@
       </div>
       <div class="card-glow"></div>
     </a>
-    <a href="MusicClassesMain.html" class="category-card">
+    <a href="music-classes/MusicClassesMain.html" class="category-card">
       <div class="card-bg" id="music-bg"></div>
       <div class="card-overlay"></div>
       <div class="card-content">
@@ -574,7 +574,7 @@
       </div>
       <div class="card-glow"></div>
     </a>
-    <a href="Index.html" class="category-card">
+    <a href="dance/Index.html" class="category-card">
       <div class="card-bg" id="dance-bg"></div>
       <div class="card-overlay"></div>
       <div class="card-content">
@@ -634,11 +634,11 @@
     </div>
     <div class="footer-col">
       <h4>Platform</h4>
-      <a href="1home.html">Movies</a><a href="Songs Home page.html">Songs</a><a href="1. Books Main.html">Library</a><a href="MusicClassesMain.html">Music Classes</a>
+      <a href="movies/1home.html">Movies</a><a href="songs/Songs%20Home%20page.html">Songs</a><a href="books/1.%20Books%20Main.html">Library</a><a href="music-classes/MusicClassesMain.html">Music Classes</a>
     </div>
     <div class="footer-col">
       <h4>Support</h4>
-      <a href="help.html">Help Center</a><a href="contact.html">Contact Us</a><a href="settings.html">Settings</a><a href="troubleshoot.html">Troubleshoot</a>
+      <a href="help/help.html">Help Center</a><a href="help/contact.html">Contact Us</a><a href="help/settings.html">Settings</a><a href="help/troubleshoot.html">Troubleshoot</a>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
@@ -661,11 +661,11 @@ function startSlideshow(id, images) {
   el.style.backgroundImage = `url('${images[i]}')`;
   setInterval(() => { i = (i + 1) % images.length; el.style.backgroundImage = `url('${images[i]}')`; }, 4000);
 }
-startSlideshow("songs-bg", ["0.apt.main.songs.jpeg","0.alan walker.songs.main.jpg","0.songs2.jpg"]);
-startSlideshow("movies-bg", ["0.movies.jpg","0.movies1.jpg","0.movies2.jpg"]);
-startSlideshow("library-bg", ["0.books.jpg","0.books1.jpg","0.books2.jpg"]);
-startSlideshow("music-bg", ["0.music1.jpg","0.music2.jpg","0.music3.jpg"]);
-startSlideshow("dance-bg", ["0.chore.ballet.jpg","0.Ballroom.main.choreo.jpg","0.chore1.jpg"]);
+startSlideshow("songs-bg", ["img/0.apt.main.songs.jpeg","img/0.alan walker.songs.main.jpg","img/0.songs2.jpg"]);
+startSlideshow("movies-bg", ["img/0.movies.jpg","img/0.movies1.jpg","img/0.movies2.jpg"]);
+startSlideshow("library-bg", ["img/0.books.jpg","img/0.books1.jpg","img/0.books2.jpg"]);
+startSlideshow("music-bg", ["img/0.music1.jpg","img/0.music2.jpg","img/0.music3.jpg"]);
+startSlideshow("dance-bg", ["img/0.chore.ballet.jpg","img/0.Ballroom.main.choreo.jpg","img/0.chore1.jpg"]);
 
 // Scroll reveal animations
 const obs = new IntersectionObserver(entries => {
@@ -684,6 +684,6 @@ document.querySelectorAll('.category-card,.feature-card,.offer-card,.stat-item')
   obs.observe(el);
 });
 </script>
-<script src="navbar.js"></script>
+<script src="js/navbar.js"></script>
 </body>
 </html>
